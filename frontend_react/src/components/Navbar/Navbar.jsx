@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
 import { HiMenuAlt4, HiX } from 'react-icons/hi';
 import { motion } from 'framer-motion';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import './Navbar.scss';
 import { images } from '../../constants';
 
 const Navbar = () => {
+	const navigate = useNavigate();
+	const location = useLocation();
+
+	useEffect
+	// Access the current route using location.pathname
+	const currentRoute = location.pathname;
+	console.log(currentRoute);
+
 	const [toggle, setToggle] = useState(false);
 	return (
 		<nav className='app__navbar'>
@@ -13,13 +22,14 @@ const Navbar = () => {
 				<img src={images.logo} alt='logo' />
 			</div>
 			<ul className='app__navbar-links'>
-				{['home', 'about', 'work', 'skills','contact'].map((item) => (
+				{['home', 'about', 'work', 'skills', 'contact'].map((item) => (
 					<li className='app__flex p-text' key={`link-${item}`}>
 						{/* to create a dot above the hovered element */}
 						<div />
 						<a href={`#${item}`}>{item}</a>
 					</li>
 				))}
+				<li className='app__flex p-text'><div /><a onClick={() => navigate('/blogs')}>blogs</a></li>
 			</ul>
 
 			{/*for implementing hamburger menu for mobile devices */}
@@ -37,6 +47,11 @@ const Navbar = () => {
 									<a href={`#${item}`} onClick={() => setToggle(false)}>{item}</a>
 								</li>
 							))}
+							<li><a onClick={() => {
+								navigate('/blogs')
+								setToggle(false)
+							}}>
+								blogs</a></li>
 						</ul>
 					</motion.div>
 				)}
@@ -45,4 +60,4 @@ const Navbar = () => {
 	)
 }
 
-export default Navbar
+export default Navbar;
