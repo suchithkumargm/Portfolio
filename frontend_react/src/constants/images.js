@@ -35,6 +35,9 @@ import nb from '../assets/nb.png';
 import skype from '../assets/skype.png';
 import spotify from '../assets/spotify.png';
 
+import java from '../assets/java.png';
+import photo from '../assets/photo.png'
+
 // eslint-disable-next-line
 export default {
   email,
@@ -70,4 +73,6 @@ export default {
   nb,
   skype,
   spotify,
+  java,
+  photo
 };
