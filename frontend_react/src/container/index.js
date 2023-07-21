@@ -4,3 +4,5 @@ export {default as Header} from './Header/Header.jsx';
 export {default as Skills} from './Skills/Skills.jsx';
 export {default as Testimonial} from './Testimonial/Testimonial.jsx';
 export {default as Work} from './Work/Work.jsx';
+export {default as Blogs} from './Blogs/Blogs.jsx';
+export {default as BlogPost} from './Blogs/BlogPost/BlogPost.jsx';

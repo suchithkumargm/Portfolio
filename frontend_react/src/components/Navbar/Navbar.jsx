@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import { HiMenuAlt4, HiX } from 'react-icons/hi';
 import { motion } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -10,10 +10,25 @@ const Navbar = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 
-	useEffect
-	// Access the current route using location.pathname
-	const currentRoute = location.pathname;
-	console.log(currentRoute);
+	const [isBlogPage,setIsBlogPage]=useState(false);
+
+	useEffect(() => {
+		console.log('Location changed:', location.pathname);
+		if(location.pathname==='/blogs' || location.pathname==='/blogs/:name'){
+			setIsBlogPage(true);
+		}
+	  }, [location.pathname]);
+
+	  const handleNavigation = (item) => {
+		if (!isBlogPage) {
+		  // If it's not a blog page, navigate to the corresponding route using the hash symbol
+		  console.log(item);
+		  navigate(`#${item}`);
+		} else {
+		  // If it's a blog page, navigate to the root route '/'
+		  navigate('/');
+		}
+	  };
 
 	const [toggle, setToggle] = useState(false);
 	return (
@@ -26,10 +41,11 @@ const Navbar = () => {
 					<li className='app__flex p-text' key={`link-${item}`}>
 						{/* to create a dot above the hovered element */}
 						<div />
-						<a href={`#${item}`}>{item}</a>
+						<a href={`#${item}`} onClick={() => handleNavigation(item)}>{item}</a> 
 					</li>
 				))}
-				<li className='app__flex p-text'><div /><a onClick={() => navigate('/blogs')}>blogs</a></li>
+				<li className='app__flex p-text'><div /><a onClick={() =>navigate('/blogs')}>
+				blogs</a></li>
 			</ul>
 
 			{/*for implementing hamburger menu for mobile devices */}
@@ -44,7 +60,11 @@ const Navbar = () => {
 						<ul>
 							{['home', 'about', 'work', 'skills', 'contact'].map((item) => (
 								<li key={item}>
-									<a href={`#${item}`} onClick={() => setToggle(false)}>{item}</a>
+									{/* <a href={`#${item}`} onClick={() => setToggle(false)}>{item}</a> */}
+									<a href={`#${item}`} onClick={() => {
+										handleNavigation(item)
+									setToggle(false)
+									}}>{item}</a>
 								</li>
 							))}
 							<li><a onClick={() => {

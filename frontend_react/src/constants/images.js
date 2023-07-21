@@ -37,6 +37,7 @@ import spotify from '../assets/spotify.png';
 
 import java from '../assets/java.png';
 import photo from '../assets/photo.png'
+import profilepic from '../assets/profilepic.png'
 
 // eslint-disable-next-line
 export default {
@@ -74,5 +75,6 @@ export default {
   skype,
   spotify,
   java,
-  photo
+  photo,
+  profilepic
 };
