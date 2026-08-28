@@ -13,7 +13,6 @@ const Navbar = () => {
 	const [isBlogPage,setIsBlogPage]=useState(false);
 
 	useEffect(() => {
-		console.log('Location changed:', location.pathname);
 		if(location.pathname==='/blogs' || location.pathname==='/blogs/:name'){
 			setIsBlogPage(true);
 		}
@@ -22,7 +21,6 @@ const Navbar = () => {
 	  const handleNavigation = (item) => {
 		if (!isBlogPage) {
 		  // If it's not a blog page, navigate to the corresponding route using the hash symbol
-		  console.log(item);
 		  navigate(`#${item}`);
 		} else {
 		  // If it's a blog page, navigate to the root route '/'

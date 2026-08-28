@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
 import { useNavigate } from 'react-router-dom'
 
-import { urlFor, client } from '../../client';
+import { blogs } from '../../data';
 import './Blogs.scss';
 
 const Blogs = () => {
@@ -11,16 +10,6 @@ const Blogs = () => {
 		navigate(`/blogs/${projectName}`);
 	};
 
-	const [blog, setBlog] = useState([]);
-
-	useEffect(() => {
-		const query = '*[_type == "blogs"]';
-
-		client.fetch(query).then((data) => {
-			setBlog(data);
-		});
-	}, []);
-
 	return (
 		<>
 			<div className='app__blog'>
@@ -28,8 +17,8 @@ const Blogs = () => {
 
 				<h2 className="head-text">My Project Blogs</h2>
 
-				{blog.map((item) => (
-					<div className="d-flex align-items-center justify-content-center">
+				{blogs.map((item) => (
+					<div className="d-flex align-items-center justify-content-center" key={item.projectName}>
 						<div className="col-md-8">
 							<div className="row g-0 border rounded overflow-hidden flex-md-row mb-4  h-md-250 position-relative  bg-white app__blog-card">
 								<div className="col p-4 d-flex flex-column position-static">
@@ -38,7 +27,7 @@ const Blogs = () => {
 									<button onClick={() => handleViewBlog(item.projectName)}>View Blog</button>
 								</div>
 								<div className="col-auto d-none d-lg-block">
-									<img src={urlFor(item.mainImgUrl)} />
+									<img src={item.mainImgUrl} alt={item.projectName} />
 								</div>
 							</div>
 						</div>

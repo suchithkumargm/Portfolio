@@ -1,25 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { AiFillEye, AiFillGithub } from 'react-icons/ai';
 import { motion } from 'framer-motion';
 
 import { AppWrap, MotionWrap } from '../../wrapper';
-import { urlFor, client } from '../../client';
+import { works } from '../../data';
 import './Work.scss';
 
 const Work = () => {
-	const [works, setWorks] = useState([]);
-	const [filterWork, setFilterWork] = useState([]);
+	const [filterWork, setFilterWork] = useState(works);
 	const [activeFilter, setActiveFilter] = useState('All');
 	const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 });
-
-	useEffect(() => {
-		const query = '*[_type == "works"]';
-
-		client.fetch(query).then((data) => {
-			setWorks(data);
-			setFilterWork(data);
-		});
-	}, []);
 
 	const handleWorkFilter = (item) => {
 		setActiveFilter(item);
@@ -62,7 +52,7 @@ const Work = () => {
 						<div
 							className="app__work-img app__flex"
 						>
-							<img src={urlFor(work.imgUrl)} alt={work.name} />
+							<img src={work.imgUrl} alt={work.title} />
 
 							<motion.div
 								whileHover={{ opacity: [0, 1] }}
