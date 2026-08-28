@@ -19,6 +19,12 @@
   justify-content: flex-start;
   align-items: center;
 
+  a {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
   //img tag inside app__navbar-logo
   img {
     width: 210px;

@@ -1,29 +1,24 @@
-import about01 from '../assets/about01.png';
-import about02 from '../assets/about02.png';
-import about03 from '../assets/about03.png';
-import about04 from '../assets/about04.png';
-
-// TODO: replace the copy below with your own. `imgUrl` is a local image import.
+// Written from Suchith_Kumar_FullStack.pdf. No images — these are text cards.
 const abouts = [
   {
-    title: 'Backend Development',
-    description: 'Designing and building reliable APIs and services.',
-    imgUrl: about01,
+    title: 'Backend Engineering',
+    description:
+      'Java and Spring Boot services built around REST APIs, microservices and event-driven flows, using Apache Kafka to keep distributed systems consistent.',
+  },
+  {
+    title: 'Cloud & Serverless',
+    description:
+      'Production workloads on AWS — Lambda, API Gateway, EventBridge, SQS, DynamoDB and CloudWatch — including a recurring-investment engine serving two markets.',
   },
   {
     title: 'Frontend Development',
-    description: 'Building responsive, accessible interfaces with React.',
-    imgUrl: about02,
+    description:
+      'React and TypeScript interfaces, including micro-frontends integrated into an existing trading platform through interop communication.',
   },
   {
-    title: 'System Design',
-    description: 'Structuring systems that stay maintainable as they grow.',
-    imgUrl: about03,
-  },
-  {
-    title: 'Problem Solving',
-    description: 'Breaking hard problems down into shippable pieces.',
-    imgUrl: about04,
+    title: 'Testing & Delivery',
+    description:
+      'JUnit, Jest and Cucumber coverage, k6 load testing on ephemeral stacks, and GitLab CI/CD pipelines that ship changes safely behind feature flags.',
   },
 ];
 

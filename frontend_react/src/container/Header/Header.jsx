@@ -1,67 +1,75 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { SiSpringboot, SiAmazonaws } from 'react-icons/si';
+import { HiArrowDown } from 'react-icons/hi';
 
-import {AppWrap} from '../../wrapper';
+import { AppWrap } from '../../wrapper';
 import { images } from '../../constants';
 import './Header.scss';
 
-const scaleVariants = {
+// TODO: make these yours.
+const NAME = 'Suchith Kumar';
+const ROLE = 'Software Engineer';
+const COMPANY = { name: 'IG Group', url: 'https://www.ig.com/en' };
+
+const skillCircles = [
+  { label: 'Java', src: images.java },
+  { label: 'Spring Boot', Icon: SiSpringboot, color: '#6DB33F' },
+  { label: 'AWS', Icon: SiAmazonaws, color: '#FF9900' },
+  { label: 'React', src: images.react },
+];
+
+const container = {
   whileInView: {
-    scale: [0, 1],
-    opacity: [0, 1],
-    transition: {
-      duration: 1,
-      ease: 'easeInOut',
-    },
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
   },
 };
 
+const riseUp = {
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+};
+
 const Header = () => (
-  <div className="app__header app__flex">
-    <motion.div
-      whileInView={{ x: [-100, 0], opacity: [0, 1] }}
-      transition={{ duration: 0.5 }}
-      className="app__header-info"
-    >
-      <div className="app__header-badge">
-        <div className="badge-cmp app__flex">
-          <span>👋</span>
-          <div style={{ marginLeft: 20 }}>
-            <p className="p-text">Hello, I am</p>
-            <h1 className="head-text">Suchith</h1>
-          </div>
-        </div>
+  <motion.div
+    className="app__header app__flex"
+    variants={container}
+    initial="initial"
+    whileInView="whileInView"
+    viewport={{ once: true }}
+  >
+    <motion.h1 className="app__header-name" variants={riseUp}>
+      I&apos;m {NAME}
+    </motion.h1>
 
-      </div>
-    </motion.div>
+    <motion.p className="app__header-role" variants={riseUp}>
+      {ROLE} @{' '}
+      <a
+        className="app__header-company"
+        href={COMPANY.url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {COMPANY.name}
+      </a>
+    </motion.p>
 
-    <motion.div
-      whileInView={{ opacity: [0, 1] }}
-      transition={{ duration: 0.5, delayChildren: 0.5 }}
-      className="app__header-img"
-    >
-      <img src={images.profile} alt="profile_bg" />
-      <motion.img
-        whileInView={{ scale: [0, 1] }}
-        transition={{ duration: 1, ease: 'easeInOut' }}
-        src={images.circle}
-        alt="profile_circle"
-        className="overlay_circle"
-      />
-    </motion.div>
+    <motion.a href="#about" className="app__header-cta" variants={riseUp}>
+      Learn more about me <HiArrowDown aria-hidden="true" />
+    </motion.a>
 
-    <motion.div
-      variants={scaleVariants}
-      whileInView={scaleVariants.whileInView}
-      className="app__header-circles"
-    >
-      {[images.node, images.java, images.react].map((circle, index) => (
-        <div className="circle-cmp app__flex" key={`circle-${index}`}>
-          <img src={circle} alt="profile_bg" />
+    <motion.div className="app__header-circles" variants={riseUp}>
+      {skillCircles.map(({ label, src, Icon, color }) => (
+        <div className="circle-cmp app__flex" key={label} title={label}>
+          {src ? (
+            <img src={src} alt={label} />
+          ) : (
+            <Icon role="img" aria-label={label} style={{ color }} />
+          )}
         </div>
       ))}
     </motion.div>
-  </div>
+  </motion.div>
 );
 
-export default AppWrap(Header,'home');
+export default AppWrap(Header, 'home');
