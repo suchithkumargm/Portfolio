@@ -10,6 +10,16 @@
 	--gray-color: #6b7688;
 	--brown-color: #46364a;
 	--white-color: #ffffff;
+
+	/* height of the fixed navbar — sections offset themselves by this */
+	--navbar-height: 79px;
+}
+
+@media screen and (max-width: 650px) {
+	:root {
+		/* the navbar wraps to two rows: logo above, links below */
+		--navbar-height: 108px;
+	}
 }
 
 * {

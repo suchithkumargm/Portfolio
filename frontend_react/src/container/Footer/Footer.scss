@@ -128,3 +128,48 @@
     margin: 1rem 0;
   }
 }
+
+// The fixed .app__social rail is hidden below 500px, so the contact section
+// carries the links instead. Mobile only — desktop keeps the side rail.
+.app__footer-social {
+  display: none;
+
+  @media screen and (max-width: 500px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    margin: 1rem 0 0.5rem;
+
+    a {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background-color: var(--white-color);
+      border: 1px solid var(--lightGray-color);
+
+      transition: all 0.3s ease-in-out;
+
+      svg {
+        width: 22px;
+        height: 22px;
+        color: var(--gray-color);
+      }
+
+      &:hover {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+
+        svg {
+          color: var(--white-color);
+        }
+      }
+    }
+  }
+}

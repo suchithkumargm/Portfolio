@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { images } from '../../constants';
 import { AppWrap, MotionWrap } from '../../wrapper';
+import { socialLinks } from '../../components/SocialMedia';
 import './Footer.scss';
 
 const CONTACT_EMAIL = 'suchithkumargm@gmail.com';
@@ -42,6 +43,16 @@ const Footer = () => {
 					<a href="tel:+91 9108733565" className="p-text">+91 9108733565</a>
 				</div>
 			</div>
+
+			{/* the fixed side rail is hidden below 500px, so surface the links here */}
+			<div className="app__footer-social">
+				{socialLinks.map(({ label, url, Icon }) => (
+					<a key={label} href={url} target="_blank" rel="noopener noreferrer" aria-label={label}>
+						<Icon />
+					</a>
+				))}
+			</div>
+
 			{!isFormSubmitted ? (
 				<div className="app__footer-form app__flex">
 					<div className="app__flex">

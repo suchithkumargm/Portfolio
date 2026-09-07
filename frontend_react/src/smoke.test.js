@@ -52,6 +52,18 @@ test('navbar logo links back to the top', () => {
   expect(within(logoLink).getByAltText('logo')).toBeInTheDocument();
 });
 
+test('navbar shows all links directly — no hamburger menu', () => {
+  const { container } = render(<App />);
+  const nav = within(container.querySelector('.app__navbar'));
+
+  ['home', 'about', 'work', 'skills', 'contact'].forEach((item) => {
+    expect(nav.getByRole('link', { name: item })).toHaveAttribute('href', `#${item}`);
+  });
+
+  // the toggle drawer is gone entirely
+  expect(container.querySelector('.app__navbar-menu')).toBeNull();
+});
+
 test('social rail links to GitHub, LinkedIn and LeetCode — not Instagram', () => {
   render(<App />);
   expect(screen.getAllByRole('link', { name: 'LeetCode' })[0]).toHaveAttribute(
@@ -60,4 +72,16 @@ test('social rail links to GitHub, LinkedIn and LeetCode — not Instagram', () 
   expect(screen.getAllByRole('link', { name: 'GitHub' })[0]).toBeInTheDocument();
   expect(screen.getAllByRole('link', { name: 'LinkedIn' })[0]).toBeInTheDocument();
   expect(document.querySelector('a[href*="instagram"]')).toBeNull();
+
+  // every section's rail carries all three
+  const rails = document.querySelectorAll('.app__social');
+  expect(rails.length).toBeGreaterThan(0);
+  rails.forEach((rail) => {
+    expect(rail.querySelector('a[href*="leetcode"]')).not.toBeNull();
+  });
+
+  // and the contact section repeats them for phones, where the rail is hidden
+  const footerRow = document.querySelector('.app__footer-social');
+  expect(footerRow.querySelector('a[href*="leetcode"]')).not.toBeNull();
+  expect(footerRow.querySelectorAll('a')).toHaveLength(3);
 });
