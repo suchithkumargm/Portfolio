@@ -1,4 +1,4 @@
 [build]
   base    = "frontend_react"
   command = "npm run build"
-  publish = "frontend_react/build"
+  publish = "build"
