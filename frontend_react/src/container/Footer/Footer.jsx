@@ -44,11 +44,11 @@ const Footer = () => {
 				</div>
 			</div>
 
-			{/* the fixed side rail is hidden below 500px, so surface the links here */}
 			<div className="app__footer-social">
 				{socialLinks.map(({ label, url, Icon }) => (
 					<a key={label} href={url} target="_blank" rel="noopener noreferrer" aria-label={label}>
 						<Icon />
+						{label}
 					</a>
 				))}
 			</div>

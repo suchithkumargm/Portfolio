@@ -6,8 +6,22 @@ test('home route renders sections from local data files', () => {
   render(<App />);
   expect(screen.getByText(/Passionate About/i)).toBeInTheDocument();
   expect(screen.getByText('Backend Engineering')).toBeInTheDocument();   // about.js
-  expect(screen.getByText('Project One')).toBeInTheDocument();          // works.js
-  expect(screen.getByText('Your Company')).toBeInTheDocument();         // experiences.js -> the previously-dead timeline
+  expect(screen.getByText(/Auto-Invest/)).toBeInTheDocument();          // works.js
+  expect(screen.getByText(/Apple Pay UAE/)).toBeInTheDocument();
+  expect(screen.getByText(/45,000\+ live buy orders/)).toBeInTheDocument();
+  // internal projects: no repo/demo links, screenshots, or category filters
+  expect(document.querySelectorAll('.app__work-item img')).toHaveLength(0);
+  expect(document.querySelector('.app__work-portfolio a')).toBeNull();
+  expect(document.querySelector('.app__work-filter')).toBeNull();
+
+  // no commercial figures anywhere on the page
+  expect(document.body.textContent).not.toMatch(/USD\s?\d/);
+  expect(document.body.textContent).not.toMatch(/\d+\s?M\b/);
+  expect(screen.getAllByText('IG Group').length).toBeGreaterThan(0);     // experiences.js -> the previously-dead timeline
+  expect(screen.getByText('Full Stack Associate Developer')).toBeInTheDocument();
+  expect(screen.getByText('Graduate Full Stack Developer')).toBeInTheDocument();
+  expect(screen.getAllByText('Spring Boot').length).toBeGreaterThan(0);  // skills.js (also a Work tech tag)
+  expect(screen.queryByText('Node.js')).not.toBeInTheDocument();        // not on the resume
   expect(screen.getByText('Contact Me')).toBeInTheDocument();
 
   // About is text-only — no placeholder illustrations

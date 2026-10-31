@@ -3,7 +3,7 @@ import React from 'react';
 import './Navbar.scss';
 import { images } from '../../constants';
 
-const links = ['home', 'about', 'work', 'skills', 'contact'];
+const links = ['home', 'about', 'work', 'experience', 'achievements', 'contact'];
 
 const Navbar = () => {
 	return (
