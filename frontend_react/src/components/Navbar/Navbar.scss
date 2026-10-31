@@ -109,14 +109,29 @@
   @media screen and (max-width: 650px) {
     flex: unset;
     width: 100%;
-    justify-content: center;
-    margin-top: 0.75rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    margin-top: 0.5rem;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     li {
+      flex-shrink: 0;
       margin: 0 0.5rem;
 
+      div {
+        display: none;
+      }
+
       a {
-        font-size: 0.85rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.04em;
       }
     }
   }
